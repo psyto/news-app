@@ -35,7 +35,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function HomeScreen() {
+const HomeScreen = (props) => {
+  const {navigation} = props;
+
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     fetchArticles();
@@ -59,6 +61,7 @@ export default function HomeScreen() {
             imageUrl={item.urlToImage}
             title={item.title}
             author={item.author}
+            onPress={() => navigation.navigate("Article")}
           />
         )}
         keyExtractor={(item, index) => index.toString()}
@@ -66,3 +69,5 @@ export default function HomeScreen() {
     </SafeAreaView>
   );
 }
+
+export default HomeScreen;
